@@ -1,68 +1,111 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-  <title>Dashboard Revitalisasi Sekolah 2026</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+    <title>Dashboard Revit PDM 2026</title>
 
-    body{
-      font-family: Arial, sans-serif;
-      background:#f4f4f4;
-      height:100vh;
-      overflow:hidden;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    iframe{
-      width:100%;
-      height:100vh;
-      border:none;
-      background:white;
-    }
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #ffffff;
+        }
 
-    .loading{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:white;
-      z-index:9999;
-      font-size:18px;
-      color:#444;
-    }
-  </style>
+        #app {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+
+        /* Loading */
+        #loading {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            font-family: Arial, sans-serif;
+        }
+
+        .loading-box {
+            text-align: center;
+        }
+
+        .spinner {
+            width: 42px;
+            height: 42px;
+            margin: 0 auto 15px;
+            border: 4px solid #e5e7eb;
+            border-top-color: #003366;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .loading-text {
+            color: #003366;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="loading" id="loading">
-  Memuat Dashboard Revitalisasi Sekolah 2026
-</div>
+    <!-- Loading -->
+    <div id="loading">
+        <div class="loading-box">
+            <div class="spinner"></div>
+            <div class="loading-text">
+                Memuat Dashboard Revit PDM 2026...
+            </div>
+        </div>
+    </div>
 
-<iframe
-  id="appFrame"
-  src="https://script.google.com/macros/s/AKfycbxd-RrHIFXIT8PYdGwtkE5tIJYXsE69OXpWZ2lLOZ-jm_vAIL29-0jl6n_mAuaubrEz/exec"
-  allowfullscreen>
-</iframe>
+    <!-- Dashboard Google Apps Script -->
+    <div id="app">
+        <iframe
+            id="gasApp"
+            src="https://script.google.com/macros/s/AKfycbxd-RrHIFXIT8PYdGwtkE5tIJYXsE69OXpWZ2lLOZ-jm_vAIL29-0jl6n_mAuaubrEz/exec"
+            title="Dashboard Revit PDM 2026"
+            allow="fullscreen">
+        </iframe>
+    </div>
 
-<script>
-  const iframe = document.getElementById('appFrame');
-  const loading = document.getElementById('loading');
+    <script>
+        const iframe = document.getElementById("gasApp");
+        const loading = document.getElementById("loading");
 
-  iframe.onload = function () {
-    loading.style.display = 'none';
-  };
-</script>
+        iframe.addEventListener("load", function () {
+            setTimeout(function () {
+                loading.style.display = "none";
+            }, 500);
+        });
+    </script>
 
 </body>
 </html>
